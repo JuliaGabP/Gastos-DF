@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Gastos Públicos DF{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <style>
+      /* Estilos para os gráficos */
+      .content {
+        padding: 20px;
+      }
+    </style>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <header>
+      <nav id="header-container">
+        <div id="logo-container">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+            id="header-logo"
+          />
+          <h1>Monitoramento De Gastos Públicos - DF</h1>
+        </div>
+        <div class="header-buttons">
+          <!-- Botões de navegação, com classe 'active' para a página atual -->
+          <a
+            href="{{ url_for('pagina_inicial') }}"
+            class="btn-header {{'active' if request.path == '/' else '' }}"
+            >Início</a
+          >
+          <a
+            href="{{ url_for('about') }}"
+            class="btn-header {{ 'active' if request.path == '/about' else '' }}"
+            >Guia de Uso</a
+          >
+          <a
+            href="{{ url_for('pagina_graficos') }}"
+            class="btn-header {{ 'active' if request.path == '/graficos' or request.path == '/tabelas' else '' }}"
+            >Análise de Gastos</a
+          >
+        </div>
+      </nav>
+    </header>
+    <!-- Conteúdo da página -->
+    <main>
+      {%if request.path != '/' and request.path != '/about' %}
+      <div id="barra-navegacao" style="margin-top: -38px">
+        <a
+          href="{{ url_for('pagina_graficos') }}"
+          class="nav-link {{ 'active' if request.path == '/graficos' else '' }}"
+          >Gráficos</a
+        >
+        <a
+          href="{{ url_for('pagina_tabelas') }}"
+          class="nav-link {{ 'active' if request.path == '/tabelas' else '' }}"
+          >Tabelas</a
+        >
+      </div>
+      {% endif %} {% block content %}
+      <!-- Outros conteúdos -->
+      {% endblock %}
+    </main>
+    <!-- Rodapé global, presente em todas as páginas -->
+    <footer>
+      <div id="footer-container">
+        <img
+          src="{{ url_for('static', filename='images/footer-logo.png') }}"
+          alt="Logo do rodapé"
+          id="footer-logo"
+        />
+        <p>© {{ g.current_year }} Monitoramento de Gastos Públicos.</p>
+      </div>
+    </footer>
+  </body>
+</html>

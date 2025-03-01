@@ -1,0 +1,15 @@
+Flask==2.2.5           # Framework web principal
+plotly==5.24.1         # Biblioteca para gráficos interativos
+Jinja2==3.1.4          # Motor de templates utilizado pelo Flask
+gunicorn==22.0.0       # Servidor WSGI para deploy de aplicações Flask
+requests
+reportlab
+fpdf
+matplotlib
+flake8
+autopep8
+autoflake
+pytest==7.1.2
+pytest-flask==1.2.0
+werkzeug==2.2.2
+
